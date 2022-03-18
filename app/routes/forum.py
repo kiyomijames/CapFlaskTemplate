@@ -49,7 +49,7 @@ def post(postID):
 # template 'post.html'. 
 # TODO add the ability for an administrator to delete posts. 
 @app.route('/post/delete/<postID>')
-# Only run this route if th euser is logged in.
+# Only run this route if the user is logged in.
 @login_required
 def postDelete(postID):
     # retrieve the post to be deleted using the postID
@@ -68,7 +68,6 @@ def postDelete(postID):
     posts = Post.objects()  
     # Send the user to the list of remaining posts.
     return render_template('posts.html',posts=posts)
-
 
 # This route actually does two things depending on the state of the if statement 
 # 'if form.validate_on_submit()'. When the route is first called, the form has not 
