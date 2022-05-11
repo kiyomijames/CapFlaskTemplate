@@ -1,0 +1,76 @@
+<!-- This is a blank template.  You can copy this to make a new template page. -->
+
+{% extends 'base.html' %}
+
+{% block body %}
+{% if projects %}
+    {% for project in projects %}
+        <div class="row border border-primary">
+            <div class= "col-1 border border-primary">
+                {% if loop.index == 1 %}
+                <h4 class="display-0.5"></h4>
+                {% endif %}
+
+                <a href="/project/delete/{{projectID}}">del</a>
+                <a href="/project/edit/{{projectID}}">edit</a>
+
+            </div>
+        
+        
+            <div class="col">
+                {% if loop.index == 1 %}
+                <h4 class="display-0.5">Date</h4>
+                {% endif %}
+
+                <a href="/project/{{project.id}}">
+                    {{moment(project.createdate).calendar()}}
+                </a>
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                <h4 class="display-0.5">User</h4>
+                {% endif %}
+                {{project.author.username}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h4 class="display-0.05">Project Name</h4>
+                {% endif %}
+                {{project.projectname}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h4 class="display-0.5">Category</h4>
+                {% endif %}
+                {{project.category}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h4 class="display-0.5">Location</h4>
+                {% endif %}
+                {{project.location}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h4 class="display-0.5">Project Description</h4>
+                {% endif %}
+                {{project.description}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h4 class="display-0.5">Amount</h4>
+                {% endif %}
+                {{project.amountm}}
+            </div>
+            <div class="col">
+                {% if loop.index == 1 %}
+                    <h4 class="display-0.5">Type</h4>
+                {% endif %}
+                {{project.typem}}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <h1>No Projects</h1>
+{% endif %}
+{% endblock %}

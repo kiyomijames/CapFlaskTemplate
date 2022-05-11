@@ -7,7 +7,7 @@
 from app import app
 from flask import flash
 from flask_login import UserMixin
-from mongoengine import FileField, EmailField, StringField, ReferenceField, DateTimeField, CASCADE
+from mongoengine import ListField, FileField, EmailField, StringField, ReferenceField, DateTimeField, CASCADE
 from flask_mongoengine import Document
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime as dt
@@ -56,6 +56,24 @@ class Post(Document):
     meta = {
         'ordering': ['-createdate']
     }
+
+class Project(Document):
+    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
+    location = StringField()
+    projectname = StringField()
+    category = ListField()
+   # taneed = StringField()
+    amountm = StringField()
+    typem = ListField()
+    description = StringField()
+    createdate = DateTimeField(default=dt.datetime.utcnow)
+    modifydate = DateTimeField()
+
+    meta = {
+        'ordering': ['-createdate']
+    }
+
+
 
 class Comment(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE) 

@@ -1,0 +1,71 @@
+<!-- this is a generic form page.  Best way to make a new form page is to 
+copy this one and then edit it. -->
+
+{% extends "base.html" %}
+
+{% block body %}
+        <h1>Create your Projet!</h1>
+
+        <!--List all errors in a group at the top-->
+        {% for field in form.errors %}
+            {% for error in form.errors[field] %}
+                <div class="alert alert-error">
+                    <strong>Error!</strong>{{field}}: {{error}}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <form method=post>
+            {{ form.hidden_tag() }}
+            
+            {{ form.projectname.label }} <br>
+            {{ form.projectname(size=64) }}
+            <!--List the errors for this field-->
+            {% for error in form.projectname.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+<br>
+            {{ form.category.label }} <br>
+            {{ form.category }}
+            <!--List the errors for this field-->
+            {% for error in form.category.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+<br>
+            {{ form.location.label }} <br>
+            {{ form.location(size=64) }}
+            <!--List the errors for this field-->
+            {% for error in form.location.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+<br>
+           
+            {{ form.description.label }} <br>
+            {{ form.description(size=100) }}
+<!--List the errors for this field-->
+            {% for error in form.description.errors %}
+                 <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+
+            <br>
+            {{ form.amountm.label }} <br>
+            {{ form.amountm() }}
+            <!--List the errors for this field-->
+            {% for error in form.amountm.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <br>
+            {{ form.typem.label }} <br>
+            {{ form.typem() }}
+            <!--List the errors for this field-->
+            {% for error in form.typem.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            <br>
+            <br>
+            
+
+            {{form.submit()}}
+        </form>
+        
+{% endblock %}

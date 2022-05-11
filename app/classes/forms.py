@@ -8,7 +8,7 @@ from flask_wtf import FlaskForm
 from mongoengine.fields import EmailField
 import mongoengine.errors
 from wtforms.validators import URL, NumberRange, Email, Optional, InputRequired, ValidationError, DataRequired, EqualTo
-from wtforms import PasswordField, StringField, SubmitField, TextAreaField, HiddenField, IntegerField, SelectField, FileField, BooleanField
+from wtforms import SelectMultipleField, PasswordField, StringField, SubmitField, TextAreaField, HiddenField, IntegerField, SelectField, FileField, BooleanField
 from app.classes.data import User
 
 class LoginForm(FlaskForm):
@@ -60,11 +60,24 @@ class ProfileForm(FlaskForm):
     role = SelectField('Role',choices=[("Teacher","Teacher"),("Student","Student")])
     cluster = SelectField('cluster', choices=[("Trees","Trees"),("Bees","Bees")])
 
+class ProjectForm(FlaskForm):
+    location = StringField('City, State, Zipcode', validators=[DataRequired()])
+    amountm = StringField('Amount', validators=[DataRequired()]) 
+    submit = SubmitField('Post')
+    description = StringField('Project Description',validators=[DataRequired()])
+    typem = SelectMultipleField('Capital Type',choices=[("Equity","Equity"),("Grant","Grant"),("Debt","Debt")])
+    projectname = StringField ('Project Name',validators=[DataRequired()])
+    category = SelectMultipleField('Category',choices=[("Agriculture","Agriculture"), ("Disadvantaged Communities","Disadvantaged Communities"), ("Transportation","Transportation"), ("Energy","Energy")])
+   # taneed = SelectField
+
+
 class PostForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired()])
     content = TextAreaField('Post', validators=[DataRequired()])
     money = SelectField('Do you have money?', choices=[("Yes","Yes"),("No","No")])
     submit = SubmitField('Post')
+
+
 
 class CommentForm(FlaskForm):
     content = TextAreaField('Comment', validators=[DataRequired()])
